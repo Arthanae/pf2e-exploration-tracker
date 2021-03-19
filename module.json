@@ -3,7 +3,7 @@
 	"title": "Exploration Activities Tracker",
 	"description": "This module adds a window allowing to track all the PCs exploration activities",
 	"author": "Arthanae",
-	"version": "0.0.0",
+	"version": "1.0.2",
 	"minimumCoreVersion": "0.6.5",
 	"compatibleCoreVersion": "0.7.9",
 	"socket": "true",
