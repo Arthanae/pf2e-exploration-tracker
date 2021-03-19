@@ -42,6 +42,6 @@ jobs:
         name: ${{ github.event.release.name }}
         draft: true
         token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: './module.json, ./artbutton.zip'
+        artifacts: './module.json, ./pf2e-exploration-tracker.zip'
         tag: ${{ github.event.release.tag_name }}
         body: ${{ github.event.release.body }}
