@@ -1,0 +1,29 @@
+{
+	"name": "pf2e-exploration-tracker",
+	"title": "Exploration Activities Tracker",
+	"description": "This module adds a window allowing to track all the PCs exploration activities",
+	"author": "Arthanae",
+	"version": "0.0.0",
+	"minimumCoreVersion": "0.6.5",
+	"compatibleCoreVersion": "0.7.9",
+	"socket": "true",
+	"esmodules": [
+		"init.mjs",
+        "modules/tracker.mjs",
+        "modules/socket.mjs"
+	],
+    "styles": [ "./styles/tracker.css"],
+	"languages": [
+		{
+			"lang": "en",
+			"name": "English",
+			"path": "lang/en.json"
+		}
+	],
+	"manifest": "https://github.com/Arthanae/pf2e-exploration-tracker/releases/latest/download/module.json",
+	"url": "https://github.com/Arthanae/pf2e-exploration-tracker",
+	"download": "https://github.com/Arthanae/pf2e-exploration-tracker/releases/latest/download/pf2e-exploration-tracker.zip",
+	"readme": "https://github.com/Arthanae/pf2e-exploration-tracker/blob/master/readme.md",
+	"bugs": "https://github.com/Arthanae/pf2e-exploration-tracker/issues",
+	"changelog": "https://github.com/Arthanae/pf2e-exploration-tracker/releases"
+}

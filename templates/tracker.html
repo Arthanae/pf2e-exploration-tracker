@@ -1,0 +1,21 @@
+<div id="tracker-container">
+    <section id="tracker">
+        <header id="tracker-header" class="tracker--header">
+            <div class="header-navigation">
+				<div class="tracker--setup tracker-btn">
+					<i id="tracker-setup" class="fas fa-cog" title="Activity Setup"></i>
+				</div>
+			</div>
+            <h1 id="tracker--move-handle">
+                <span id="tracker-title">Exploration Activities Tracker</span>
+            </h1>
+        </header>
+        <div class="tracker-content">
+            <ul class="player-list">
+                {{#each playerList}}
+                <li>{{this.name}} - {{this.activity}}</li>
+                {{/each}}
+            </ul>
+        </div>
+    </section>
+</div>

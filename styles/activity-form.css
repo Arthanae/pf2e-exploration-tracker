@@ -1,0 +1,9 @@
+.tracker-form-label{
+    margin-left: 1%;
+}
+
+.tracker-form-container{
+    background: url(../ui/parchment.jpg) repeat;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

@@ -1,0 +1,23 @@
+<form autocomplete="off" onsubmit="event.preventDefault();" class="activity-form-container">
+    <h1>Setup Activity</h1>
+    <div id="activity-form-content">
+        <label class="activity-form-label">Player :</label>
+        <select id="activity-form-player-select">
+            {{#each playerList}}
+            <option value='{{this.name}}'>{{this.name}}</option>
+            {{/each}}
+        </select>
+        <label class="activity-form-label">Activity :</label>
+        <input id="activity-form-input" list="activities">
+        <datalist id="activities">
+            {{#each activities}}
+            <option value='{{this.name}}'>
+            {{/each}}
+        </datalist>
+    </div>
+    <footer>
+        <button id="activity-form-submit" type="submit" name="submit" title="Save Activity">
+            <i class="far fa-save"></i> Save Activity
+        </button>
+      </footer>
+</form>
