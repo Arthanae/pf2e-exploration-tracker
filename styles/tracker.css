@@ -2,7 +2,7 @@
     height: auto;
     border-radius: 5px;
     background: rgba(34,34,34,1);
-    color: rgba(255,255,255,.87);
+    color: rgba(255,255,255,1);
     top: 100px;
     left: 100px;
     position: fixed;
@@ -16,41 +16,32 @@
 	min-width: 255px;
 }
 
-.tracker--header {
+#tracker-header {
 	background: rgba(68,68,68,1);
 	display: flex;
-	height: 20px;
-	justify-content: space-between;
+	height: 25px;
 	align-items: center;
-	cursor: move;
 }
 
-.tracker--header .header-navigation {
+#tracker-header .header-navigation {
 	display: flex;
-	padding: 3px 4px;
-	cursor: default;
-	flex: 0 0 44px;
+	padding: 0px 8px;
 }
 
-.tracker-btn svg {
-	height: 14px;
-	vertical-align: middle;
-}
-
-.tracker-btn:last-child {
-	margin-right: 0;
+.tracker-btn {
+	cursor:pointer;
 }
 
 .tracker-btn:hover {
-	color: rgba(255,255,255,1);
+	color: rgba(255,255,255,0.6);
 }
 
 
-#tracker--move-handle {
-	font-size: 13px;
+#tracker-move-handle {
+	cursor: move;
+	font-size: 14px;
 	line-height: 1;
 	text-align: center;
-	padding: 0;
 	margin: 0;
 	border: none;
 	flex: 1;
@@ -58,8 +49,23 @@
 
 .tracker-content {
     font-size: 13px;
-    margin: 0;
-    padding: 4px 4px 2px 4px;
-    border: none;
+    padding: 6px 6px 6px 4px;
     font-weight: 400;
+}
+
+.player-list li {
+	list-style-type: none;
+}
+
+.player-list-item:not(:last-child) {
+	padding-bottom: 4px;
+}
+
+.player-name {
+	font-weight: bold;
+}
+
+.activity-item:hover {
+	cursor:pointer;
+	font-weight: bold;
 }

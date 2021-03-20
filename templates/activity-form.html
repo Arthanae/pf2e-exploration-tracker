@@ -1,5 +1,5 @@
 <form autocomplete="off" onsubmit="event.preventDefault();" class="activity-form-container">
-    <h1>Setup Activity</h1>
+    <h1 id="activity-form-title">Setup Activity</h1>
     <div id="activity-form-content">
         <label class="activity-form-label">Player :</label>
         <select id="activity-form-player-select">
@@ -7,7 +7,7 @@
             <option value='{{this.name}}'>{{this.name}}</option>
             {{/each}}
         </select>
-        <label class="activity-form-label">Activity :</label>
+        <label class="activities-label">Activity :</label>
         <input id="activity-form-input" list="activities">
         <datalist id="activities">
             {{#each activities}}
@@ -15,6 +15,7 @@
             {{/each}}
         </datalist>
     </div>
+    <hr>
     <footer>
         <button id="activity-form-submit" type="submit" name="submit" title="Save Activity">
             <i class="far fa-save"></i> Save Activity

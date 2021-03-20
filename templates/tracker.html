@@ -1,19 +1,19 @@
 <div id="tracker-container">
     <section id="tracker">
-        <header id="tracker-header" class="tracker--header">
+        <header id="tracker-header">
             <div class="header-navigation">
-				<div class="tracker--setup tracker-btn">
+				<div class="tracker-btn">
 					<i id="tracker-setup" class="fas fa-cog" title="Activity Setup"></i>
 				</div>
 			</div>
-            <h1 id="tracker--move-handle">
+            <h1 id="tracker-move-handle">
                 <span id="tracker-title">Exploration Activities Tracker</span>
             </h1>
         </header>
         <div class="tracker-content">
             <ul class="player-list">
                 {{#each playerList}}
-                <li>{{this.name}} - {{this.activity}}</li>
+                <li class="player-list-item"><span class="player-name">{{this.name}}</span> - <span class="activity-item">{{this.activity}}</span></li>
                 {{/each}}
             </ul>
         </div>

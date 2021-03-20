@@ -2,10 +2,10 @@ import { ActivityForm } from "./activityForm.mjs";
 import { Net } from "./socket.mjs";
 
 export class Tracker extends Application {
-    isOpen = false;
+
     toggled = false;
-    showToPlayers = true;
     trackerData = {};
+
     static get defaultOptions() {
         const options = super.defaultOptions;
         options.template = "modules/pf2e-exploration-tracker/templates/tracker.html";
@@ -17,13 +17,13 @@ export class Tracker extends Application {
         return this.trackerData;
     }
 
-    activityData() {
+    activityFormData() {
       let data = {};
 
       if (game.user.isGM) {
         data.playerList = this.trackerData.playerList;
       } else {
-        let player = { _id: game.user.data._id, name: game.user.data.name };
+        let player = { name: game.user.data.name };
         data.playerList = [player];
       }
 
@@ -33,16 +33,16 @@ export class Tracker extends Application {
 
     activateListeners(html) {
 
-      const trackerMove = '#tracker--move-handle';
+      const trackerMove = '#tracker-move-handle';
       const trackerSetup = '#tracker-setup';
       const trackerActivityItem = '.activity-item';
 
-      let form = new ActivityForm(JSON.stringify(this.activityData()));
+      let form = new ActivityForm(this.activityFormData());
 
       html.find(trackerSetup).click(ev => {
         ev.preventDefault();
         ev = ev || window.event;
-        form.renderForm(this.activityData())
+        form.renderForm(this.activityFormData())
       });
 
       html.find(trackerActivityItem).click(ev => {
@@ -99,7 +99,6 @@ export class Tracker extends Application {
               elmnt.style.top = (yPos) + "px";
               elmnt.style.left = (xPos) + "px";
             }
-            console.log(`pf2e-exploration-tracker | Setting tracker position to x: ${xPos}px, y: ${yPos}px`);
             game.user.update({flags: {'eatracker':{ 'trackerPos': {top: yPos, left: xPos}}}});
           }
         }
@@ -115,24 +114,24 @@ export class Tracker extends Application {
 
     setPos() {
       let pos = this.getPos();
-        return new Promise(resolve => {
-            function check() {
-            let elmnt = document.getElementById("tracker-container");
-            if (elmnt) {
-                elmnt.style.bottom = null;
-                let xPos = (pos.left) > window.innerWidth ? window.innerWidth-200 : pos.left;
-                let yPos = (pos.top) > window.innerHeight-20 ? window.innerHeight-100 : pos.top;
-                elmnt.style.top = (yPos) + "px";
-                elmnt.style.left = (xPos) + "px";
-                elmnt.style.position = 'fixed';
-                elmnt.style.zIndex = 100;
-                resolve();
-            } else {
-                setTimeout(check, 30);
-            }
-        }
-        check();
-        });
+      return new Promise(resolve => {
+          function check() {
+          let elmnt = document.getElementById("tracker-container");
+          if (elmnt) {
+              elmnt.style.bottom = null;
+              let xPos = (pos.left) > window.innerWidth ? window.innerWidth-200 : pos.left;
+              let yPos = (pos.top) > window.innerHeight-20 ? window.innerHeight-100 : pos.top;
+              elmnt.style.top = (yPos) + "px";
+              elmnt.style.left = (xPos) + "px";
+              elmnt.style.position = 'fixed';
+              elmnt.style.zIndex = 100;
+              resolve();
+          } else {
+              setTimeout(check, 30);
+          }
+      }
+      check();
+      });
     }
 
     getPlayerActivityFlag(playerName) {
@@ -147,7 +146,6 @@ export class Tracker extends Application {
     loadPlayers() {
       this.trackerData.playerList = game.users.players.map((user) => { 
         return {
-          _id: user.data._id,
           name: user.data.name,
           activity: this.getPlayerActivityFlag(user.data.name)
         }
@@ -169,10 +167,6 @@ export class Tracker extends Application {
       this.trackerData.activities = actions;
     }
 
-    openTracker() {
-      this.setPos();
-    }
-
     getPos() {
       if (game.user.data.flags.eatracker && game.user.data.flags.eatracker.trackerPos) {
         return (game.user.data.flags.eatracker.trackerPos);
@@ -181,6 +175,17 @@ export class Tracker extends Application {
         let xPos = "400";
         game.user.update({flags: {'eatracker':{ 'trackerPos': {top: yPos, left: xPos}}}})
         return {top: yPos, left: xPos}
+      }
+    }
+
+    async openActionFromPacks(actionName) {
+      let action = this.trackerData.activities.find((action) => {return action.name === actionName});
+      if (action) {
+        let actionPack = await game.packs.get("pf2e.actionspf2e");
+        let actionEntity = await actionPack.getEntity(action._id);
+        actionEntity.sheet.render(true);
+      } else {
+        ui.notifications.warn('No action with this name exists in the compendium')
       }
     }
 
@@ -202,7 +207,7 @@ export class Tracker extends Application {
           renderTemplate(templatePath, tracker.trackerData).then(html => {
             tracker.render(true);
           }).then(() => {
-            tracker.openTracker();
+            tracker.setPos();
           });
         }
       }

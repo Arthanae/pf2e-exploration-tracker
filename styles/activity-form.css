@@ -1,9 +1,12 @@
-.tracker-form-label{
+.activity-form-label{
     margin-left: 1%;
 }
 
-.tracker-form-container{
-    background: url(../ui/parchment.jpg) repeat;
+.activity-form-container{
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+.activities-label {
+    padding-left: 20px;
 }

@@ -2,6 +2,7 @@ import { Net } from "./modules/socket.mjs";
 import { Tracker } from "./modules/tracker.mjs";
 
 $(document).ready(() => {
+
     let tracker = new Tracker();
 
     Hooks.on('setup', () => {
@@ -25,9 +26,7 @@ $(document).ready(() => {
             name: "toggleTracker",
             title: "Toggle Exploration Activities Tracker",
             icon: "fas fa-search",
-            onClick: () => {
-            EATracker.toggleTracker(tracker);
-            },
+            onClick: () => { EATracker.toggleTracker(tracker); },
             button: true,
         });
     });

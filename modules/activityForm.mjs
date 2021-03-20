@@ -1,9 +1,9 @@
 export class ActivityForm extends FormApplication {
+    
     data = {};
 
     constructor(newData) {
         super();
-        newData = JSON.parse(newData);
         this.data = newData;
     }
 
@@ -22,7 +22,6 @@ export class ActivityForm extends FormApplication {
 
     submitData() {
         let submitData = {}
-
         submitData.player = document.getElementById("activity-form-player-select").value;
         submitData.activity = document.getElementById("activity-form-input").value;
         return submitData;
@@ -30,24 +29,11 @@ export class ActivityForm extends FormApplication {
 
     activateListeners(html) {
         const submit = "#activity-form-submit";
-
         html.find(submit).click((ev) => {
             ev.preventDefault();
             this.close();
             Hooks.callAll("eatrackerUpdateActivity",this.submitData());
         });
-    }
-
-    formLoaded() {
-        return new Promise((resolve) => {
-            function check() {
-                if(document.getElementById("activity-form-submit")) {
-                    resolve();
-                } else {
-                    setTimeout(check, 30);
-                }
-            }
-        })
     }
 
     renderForm(_data) {

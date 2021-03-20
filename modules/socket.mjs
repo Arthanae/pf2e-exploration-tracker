@@ -15,10 +15,10 @@ export class Net {
         });
     }
 
-    static onUpdateActivity(func) {
+    static onUpdateActivity(callback) {
         game.socket.on(Net.SOCKET_NAME, (data) => {
             if(data.cmd !== 'updateActivity') return;
-            func(data)
+            callback(data)
         })
     }
 }
