@@ -190,10 +190,8 @@ export class Tracker extends Application {
     }
 
     async updateActivity(data) {
-      let playerData = game.users.getName(data.player);
       this.trackerData.playerList.find((player) => {return player.name === data.player}).activity = data.activity;
-      playerData.update({flags: {'eatracker': { 'currentActivity' : data.activity}}});
-      await this.render(true);
+      if (this.toggled) { await this.render(true);}
     }
 
     static toggleTracker(tracker){

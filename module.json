@@ -3,7 +3,7 @@
 	"title": "Exploration Activities Tracker",
 	"description": "This module adds a window allowing to track all the PCs exploration activities",
 	"author": "Arthanae",
-	"version": "1.0.4",
+	"version": "1.2.0",
 	"system": "pf2e",
 	"minimumCoreVersion": "0.7.5",
 	"compatibleCoreVersion": "0.7.9",

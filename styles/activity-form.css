@@ -10,3 +10,8 @@
 .activities-label {
     padding-left: 20px;
 }
+
+.action-preview {
+    border: 2px solid grey;
+    padding: 10px;
+}

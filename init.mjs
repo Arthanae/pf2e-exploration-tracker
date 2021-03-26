@@ -32,6 +32,8 @@ $(document).ready(() => {
     });
 
     Hooks.on("eatrackerUpdateActivity", (data) => {
+        let playerData = game.users.getName(data.player);
+        playerData.update({flags: {'eatracker': { 'currentActivity' : data.activity}}});
         tracker.updateActivity(data);
         Net.updateActivity(data);
     })
